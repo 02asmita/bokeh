@@ -37,13 +37,19 @@ export abstract class AbstractButtonView extends WidgetView {
     }, ...children)
   }
 
+  update_position(): void {
+    super.update_position()
+    this.buttonEl.style.width = "100%"
+    this.buttonEl.style.height = "100%"
+  }
+
   render(): void {
     super.render()
 
-    empty(this.content_el)
+    empty(this.el)
     this.buttonEl = this._render_button(this.model.label)
     this.buttonEl.addEventListener("click", (event) => this._button_click(event))
-    this.content_el.appendChild(this.buttonEl)
+    this.el.appendChild(this.buttonEl)
 
     const icon = this.model.icon
     if (icon != null) {
